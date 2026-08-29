@@ -1,0 +1,13 @@
+.headerMain {
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 1rem 0px 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+  border-bottom: 1px solid #e5e7eb;
+}

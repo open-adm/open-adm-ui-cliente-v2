@@ -1,0 +1,27 @@
+.carrossel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  width: calc(200%);
+  animation: scroll 35s linear infinite;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.image {
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: .5rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

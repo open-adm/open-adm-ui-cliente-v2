@@ -1,0 +1,9 @@
+.cardproduto {
+  mix-blend-mode: multiply;
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+}
