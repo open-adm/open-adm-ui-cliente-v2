@@ -2,14 +2,14 @@
 
 import { useProdutoApi } from "@/api/UseProdutoApi";
 import { BoxApp } from "@/components/Box/BoxApp";
+import { CardProduto } from "@/components/CardProduto/CardProduto";
 import { GridApp } from "@/components/Grid/GridApp";
 import { LoadingApp } from "@/components/Loading/LoadingApp";
 import { TextApp } from "@/components/Text/TextApp";
+import { AppAuthContext } from "@/context/AppAuthContext";
+import { useNavigateApp } from "@/hooks/UseNavigateApp";
 import { IProduto } from "@/types/Produto";
 import { useContext, useEffect, useState } from "react";
-import { CardProduto } from "@/components/CardProduto/CardProduto";
-import { useNavigateApp } from "@/hooks/UseNavigateApp";
-import { AppAuthContext } from "@/context/AppAuthContext";
 
 export function ViewCategoria() {
   const { listarPorCategorias } = useProdutoApi();
@@ -26,6 +26,7 @@ export function ViewCategoria() {
 
   useEffect(() => {
     init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const categoria =

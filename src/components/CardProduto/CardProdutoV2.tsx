@@ -17,6 +17,8 @@ interface propsCardProduto {
     onBlur?: (produto: IProdutoEcommerce) => void;
     habilitarExclusaoProduto?: boolean;
     index?: number;
+    mostrarValorUnitario: boolean;
+
 }
 
 export function CardProdutoV2(props: propsCardProduto) {
@@ -212,6 +214,7 @@ export function CardProdutoV2(props: propsCardProduto) {
                                     quantidade={peso.quantidade}
                                     valorUnitario={peso.valorUnitario}
                                     onBlur={onBlur}
+                                    mostrarValorUnitario={props.mostrarValorUnitario}
                                 />
                             ))}
                         </BoxApp>
@@ -239,6 +242,7 @@ export function CardProdutoV2(props: propsCardProduto) {
                                     onBlur={onBlur}
                                     valorUnitario={tamanho.valorUnitario}
                                     quantidade={tamanho.quantidade}
+                                    mostrarValorUnitario={props.mostrarValorUnitario}
                                 />
                             ))}
                         </BoxApp>

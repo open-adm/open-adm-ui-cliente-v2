@@ -14,9 +14,11 @@ interface propsCardPesoTamanho {
     onBlur?: () => void;
     temEstoqueDisponivel?: boolean;
     quantidadeEstoqueDisponivel?: number;
+    mostrarValorUnitario: boolean;
 }
 
 export function CardPesoTamanhoV2(props: propsCardPesoTamanho) {
+    const mostrarValorUnitario = props.mostrarValorUnitario && props.valorUnitario;
 
     const quantidadeEstoqueDisponivel = props.quantidadeEstoqueDisponivel ?? 0;
 
@@ -46,7 +48,7 @@ export function CardPesoTamanhoV2(props: propsCardPesoTamanho) {
                         </>
                     ) : <><ChipApp color="error" label="Sem estoque" /></>}
                 </BoxApp>
-                {props.valorUnitario && (
+                {mostrarValorUnitario && (
                     <TextApp fontWeight={600} fontSize="16px" color="success" titulo={`${formatMoney(props.valorUnitario)}`} />
                 )}
             </BoxApp>

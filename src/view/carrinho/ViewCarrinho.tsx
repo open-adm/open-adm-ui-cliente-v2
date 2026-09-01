@@ -94,6 +94,7 @@ export function ViewCarrinho() {
                         habilitarExclusaoProduto
                         onBlur={(prod) => editarProduto(index, prod)}
                         index={index}
+                        mostrarValorUnitario
                       />
                     </GridApp>
                   ))}

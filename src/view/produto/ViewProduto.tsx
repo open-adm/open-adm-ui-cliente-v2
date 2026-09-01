@@ -14,13 +14,14 @@ import ModalApp from "@/components/Modal/ModalApp";
 import SelectApp from "@/components/Select/SelectApp";
 import { TextApp } from "@/components/Text/TextApp";
 import { listaDeIcones } from "@/config/ListaDeIcones";
+import { AppAuthContext } from "@/context/AppAuthContext";
 import { useThemeApp } from "@/hooks/UseThemeApp";
 import { IPaginacaoResponse } from "@/types/PaginacaoResponse";
 import { IPeso } from "@/types/Peso";
 import { IProdutoEcommerce } from "@/types/Produto";
 import { ITamanhos } from "@/types/Tamanho";
 import { Pagination } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export function ViewProduto() {
   const { paginacaoProduto } = useProdutoApi();
@@ -28,6 +29,8 @@ export function ViewProduto() {
   const { listarPesos } = usePesoApi();
   const listarCategorias = useListarCategoriasApi();
   const { isMobile } = useThemeApp();
+  const { usuario } = useContext(AppAuthContext);
+
   const [pagina, setPagina] = useState(1);
   const [openModal, setOpenModal] = useState(false);
   const [categoria, setCategoria] = useState<string>("");
@@ -75,6 +78,7 @@ export function ViewProduto() {
 
   useEffect(() => {
     init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagina]);
 
   if (paginacao.values.length === 0 && paginacaoProduto.status !== "loading") {
@@ -111,7 +115,7 @@ export function ViewProduto() {
             <GridApp container spacing={3}>
               {paginacao.values.map((produto) => (
                 <GridApp key={produto.id} xs={12} sm={6}>
-                  <CardProdutoV2 produto={produto} />
+                  <CardProdutoV2 produto={produto} mostrarValorUnitario={usuario !== undefined} />
                 </GridApp>
               ))}
             </GridApp>
@@ -134,8 +138,8 @@ export function ViewProduto() {
       </BoxApp>
       <ModalApp close={() => setOpenModal(false)} open={openModal}>
         {listarPesos.status === "loading" ||
-        listarTamanhos.status === "loading" ||
-        listarCategorias.status === "loading" ? (
+          listarTamanhos.status === "loading" ||
+          listarCategorias.status === "loading" ? (
           <LoadingApp width="350px" height="300px" marginTop="1rem" />
         ) : (
           <form>
