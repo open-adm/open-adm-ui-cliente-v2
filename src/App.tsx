@@ -1,4 +1,3 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
 import { useBannerApi } from '@/api/UseBannerApi'
 import { BoxApp } from '@/components/Box/BoxApp'
 import { Footer } from '@/components/Footer/Footer'
@@ -21,7 +20,6 @@ import { BannerView } from '@/view/home/BannerView'
 import { CategoriaView } from '@/view/home/CategoriaView'
 import { ViewLogin } from '@/view/login/ViewLogin'
 import { ViewLojaParceira } from '@/view/lojaParceira/ViewLojaParceira'
-import { CobrancaPedidoView } from '@/view/pedido/CobrancaPedidoView'
 import { ViewItensPedido } from '@/view/pedido/ViewItensPedido'
 import { ViewPedido } from '@/view/pedido/ViewPedido'
 import { ViewProduto } from '@/view/produto/ViewProduto'
@@ -32,6 +30,7 @@ import { ViewMinhaConta } from '@/view/usuario/MinhaConta/ViewMinhaConta'
 import { ViewTrocarSenha } from '@/view/usuario/TrocarSenha/ViewTrocarSenha'
 import { Paper, Stack } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 function HomePage() {
   const apiBanner = useBannerApi()
@@ -94,7 +93,6 @@ function StoreRoutes() {
       <Route path="/minha-conta/editar" element={<EditarViewMinhaConta />} />
       <Route path="/pedido" element={<ViewPedido />} />
       <Route path="/pedido/:id" element={<ViewItensPedido />} />
-      <Route path="/pedido/cobranca/:id" element={<CobrancaPedidoView />} />
       <Route path="/produto" element={<ViewProduto />} />
       <Route path="/recuperar-senha/:id" element={<RecuperarSenhaView />} />
       <Route path="/trocar-senha" element={<ViewTrocarSenha />} />
