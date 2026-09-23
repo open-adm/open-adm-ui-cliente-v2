@@ -1,6 +1,5 @@
 "use client";
 
-import { AlertApp } from "@/components/Alert/AlertApp";
 import { BoxApp } from "@/components/Box/BoxApp";
 import { Button } from "@/components/Button/ButtonApp";
 import { CardProdutoV2 } from "@/components/CardProduto/CardProdutoV2";
@@ -42,7 +41,7 @@ export function ViewCarrinho() {
     statusObterItens !== "loading"
   ) {
     return (
-      <BoxApp marginTop="1rem" padding="1rem" height="calc(100vh - 300px)">
+      <BoxApp marginTop="1rem" padding="1rem" display="flex" alignItems="center" flexDirection="column" height="calc(100vh - 300px)">
         <TextApp
           titulo="Carrinho"
           fontSize="18px"
@@ -69,12 +68,6 @@ export function ViewCarrinho() {
         <LoadingApp height="350px" />
       ) : (
         <>
-          <BoxApp padding="0.5rem">
-            <AlertApp
-              tipo="warning"
-              texto="Atenção, nosso tempo mínimo de entrega do pedido é de 30 dias."
-            />
-          </BoxApp>
           <GridApp container spacing={2}>
             <GridApp sm={8} xs={12} md={8}>
               <BoxApp
