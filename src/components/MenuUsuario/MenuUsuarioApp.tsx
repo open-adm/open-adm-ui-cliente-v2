@@ -1,3 +1,8 @@
+import { useLoginApi } from "@/api/UseLoginApi";
+import { rotas } from "@/config/ConfigRotas";
+import { listaDeIcones } from "@/config/ListaDeIcones";
+import { AppAuthContext } from "@/context/AppAuthContext";
+import { useNavigateApp } from "@/hooks/UseNavigateApp";
 import {
   Avatar,
   IconButton,
@@ -6,19 +11,16 @@ import {
   MenuItem,
   Tooltip,
 } from "@mui/material";
-import { IconApp } from "../Icon/IconApp";
-import { listaDeIcones } from "@/config/ListaDeIcones";
 import { useContext, useState } from "react";
 import { BoxApp } from "../Box/BoxApp";
-import { useNavigateApp } from "@/hooks/UseNavigateApp";
-import { rotas } from "@/config/ConfigRotas";
-import { AppAuthContext } from "@/context/AppAuthContext";
 import { DividerApp } from "../Divider/DividerApp";
+import { IconApp } from "../Icon/IconApp";
 
 export function MenuUsuarioApp() {
   const { sair, usuario } = useContext(AppAuthContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { navigate } = useNavigateApp();
+  const { logout } = useLoginApi()
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -27,7 +29,11 @@ export function MenuUsuarioApp() {
     setAnchorEl(null);
   };
 
-  function sairClick() {
+  async function sairClick() {
+    const response = await logout.fetch()
+    if (!response?.result) {
+      return
+    }
     sair();
     navigate(rotas.home);
     handleClose();

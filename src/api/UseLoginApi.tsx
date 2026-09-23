@@ -9,10 +9,21 @@ export function useLoginApi() {
     naoRenderizarResposta: true,
   });
 
+  const apiLogout = useApi({
+    method: "POST",
+    url: "login/logout",
+    naoRenderizarResposta: true,
+  });
+
   async function login(
     body: IRequestLogin
   ): Promise<IResponseLogin | undefined> {
     return await apiLogin.action({ body });
+  }
+
+  async function logout(
+  ): Promise<any | undefined> {
+    return await apiLogout.action();
   }
 
   return {
@@ -20,5 +31,8 @@ export function useLoginApi() {
       fetch: login,
       status: apiLogin.status,
     },
+    logout: {
+      fetch: logout
+    }
   };
 }
