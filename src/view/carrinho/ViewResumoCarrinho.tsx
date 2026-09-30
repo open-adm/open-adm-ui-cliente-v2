@@ -1,4 +1,5 @@
 import { usePedidoApi } from "@/api/usePedidoApi";
+import { AlertApp } from "@/components/Alert/AlertApp";
 import { BoxApp } from "@/components/Box/BoxApp";
 import { Button } from "@/components/Button/ButtonApp";
 import { DividerApp } from "@/components/Divider/DividerApp";
@@ -49,8 +50,6 @@ export function ViewResumoCarrinho() {
   );
 
   const totalPedido = totalPorPeso + totalPorTamanho;
-  const temItensSelecionados =
-    pesosComQuantidade.length > 0 || tamanhosComQuantidade.length > 0;
 
   useEffect(() => {
     async function carregarPedidoMinimo() {
@@ -95,15 +94,10 @@ export function ViewResumoCarrinho() {
   }
 
   async function submit() {
-    if (!temItensSelecionados) {
-      return;
-    }
-
-    const valorPedidoMinimo =
-      pedidoMinimo ?? (await obterPedidoMinimo.fetch())?.pedidoMinimo;
-
-    if (valorPedidoMinimo !== undefined && totalPedido < valorPedidoMinimo) {
-      show(`O pedido mínimo é de ${formatMoney(valorPedidoMinimo)}`);
+    if (
+      (pesosComQuantidade.length === 0 && tamanhosComQuantidade.length === 0) ||
+      !naoFechouPedidoMinimo
+    ) {
       return;
     }
 
@@ -129,6 +123,8 @@ export function ViewResumoCarrinho() {
       navigate(rotas.home);
     }
   }
+
+  const naoFechouPedidoMinimo = totalPedido > (pedidoMinimo ?? 0);
 
   return (
     <BoxApp
@@ -188,14 +184,21 @@ export function ViewResumoCarrinho() {
         />
       </BoxApp>
       <DividerApp width="100%" />
+      {pedidoMinimo && !naoFechouPedidoMinimo ? (
+        <AlertApp
+          tipo="error"
+          texto={`Atenção, pedido mínimo no valor de: ${formatMoney(
+            pedidoMinimo
+          )}`}
+          sx={{ marginTop: "1rem" }}
+        />
+      ) : (
+        <></>
+      )}
       <ViewEnderecoCarrinho />
       <BoxApp marginTop="1rem">
         <Button
-          disabled={
-            !temItensSelecionados ||
-            pedidoMinimo === undefined ||
-            totalPedido < pedidoMinimo
-          }
+          disabled={!naoFechouPedidoMinimo}
           title="Finalizar pedido"
           variant="contained"
           fullWidth
