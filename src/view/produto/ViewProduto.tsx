@@ -163,26 +163,38 @@ interface MenuFiltroProps {
 function MenuFiltro(props: MenuFiltroProps) {
   return (
     <BoxApp width={props.width ?? "400px"} height={props.height} overflowy="auto">
-      <TextApp titulo="Categorias" color="primary" />
-      {props.categorias.map((categoria) => (
-        <CheckBoxApp key={categoria.id} id={categoria.id} label={categoria.descricao}
-          value={props.categoriasIds.some((x) => x === categoria.id)}
-          onChange={async (value) => await props.filtrar(categoria.id, value, 'categoriasIds')} />
-      ))}
-      <DividerApp />
-      <BoxApp marginTop="0.5rem"><TextApp titulo="Tamanhos" color="primary" /></BoxApp>
-      {props.tamanhos.map((tamanho) => (
-        <CheckBoxApp key={tamanho.id} id={tamanho.id} label={tamanho.descricao}
-          value={props.tamanhosIds.some((x) => x === tamanho.id)}
-          onChange={async (value) => await props.filtrar(tamanho.id, value, 'tamanhosIds')} />
-      ))}
-      <DividerApp />
-      <BoxApp marginTop="0.5rem"><TextApp titulo="Pesos" color="primary" /></BoxApp>
-      {props.pesos.map((peso) => (
-        <CheckBoxApp key={peso.id} id={peso.id} label={peso.descricao}
-          value={props.pesosIds.some((x) => x === peso.id)}
-          onChange={async (value) => await props.filtrar(peso.id, value, 'pesosIds')} />
-      ))}
+      {props.categorias.length > 0 && (
+        <>
+          <TextApp titulo="Categorias" color="primary" />
+          {props.categorias.map((categoria) => (
+            <CheckBoxApp key={categoria.id} id={categoria.id} label={categoria.descricao}
+              value={props.categoriasIds.some((x) => x === categoria.id)}
+              onChange={async (value) => await props.filtrar(categoria.id, value, 'categoriasIds')} />
+          ))}
+        </>
+      )}
+      {props.tamanhos.length > 0 && (
+        <>
+          {props.categorias.length > 0 && <DividerApp />}
+          <BoxApp marginTop="0.5rem"><TextApp titulo="Tamanhos" color="primary" /></BoxApp>
+          {props.tamanhos.map((tamanho) => (
+            <CheckBoxApp key={tamanho.id} id={tamanho.id} label={tamanho.descricao}
+              value={props.tamanhosIds.some((x) => x === tamanho.id)}
+              onChange={async (value) => await props.filtrar(tamanho.id, value, 'tamanhosIds')} />
+          ))}
+        </>
+      )}
+      {props.pesos.length > 0 && (
+        <>
+          {(props.categorias.length > 0 || props.tamanhos.length > 0) && <DividerApp />}
+          <BoxApp marginTop="0.5rem"><TextApp titulo="Pesos" color="primary" /></BoxApp>
+          {props.pesos.map((peso) => (
+            <CheckBoxApp key={peso.id} id={peso.id} label={peso.descricao}
+              value={props.pesosIds.some((x) => x === peso.id)}
+              onChange={async (value) => await props.filtrar(peso.id, value, 'pesosIds')} />
+          ))}
+        </>
+      )}
     </BoxApp>
   );
 }
