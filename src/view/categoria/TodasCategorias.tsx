@@ -7,7 +7,7 @@ import { DividerApp } from "@/components/Divider/DividerApp";
 import { GridApp } from "@/components/Grid/GridApp";
 import { LoadingApp } from "@/components/Loading/LoadingApp";
 import { TextApp } from "@/components/Text/TextApp";
-import { rotas } from "@/config/ConfigRotas";
+import { rotaProdutosPorCategoria } from "@/config/ConfigRotas";
 import { listaDeIcones } from "@/config/ListaDeIcones";
 import { useNavigateApp } from "@/hooks/UseNavigateApp";
 import { useThemeApp } from "@/hooks/UseThemeApp";
@@ -45,7 +45,7 @@ export function TodasCategorias() {
                 title="Produtos desta categoria"
                 variant="outlined"
                 endIcon={listaDeIcones.flechaDireita}
-                onClick={() => navigate(`${rotas.categoria}/${categoria.id}`)}
+                onClick={() => navigate(rotaProdutosPorCategoria(categoria.descricao))}
               />
             </BoxApp>
           </GridApp>

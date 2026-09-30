@@ -7,7 +7,7 @@ import { useThemeApp } from "@/hooks/UseThemeApp";
 import { ICategoria } from "@/types/Categoria";
 import styles from "./CategoriaView.module.css";
 import { useNavigateApp } from "@/hooks/UseNavigateApp";
-import { rotas } from "@/config/ConfigRotas";
+import { rotaProdutosPorCategoria } from "@/config/ConfigRotas";
 import { Button } from "@/components/Button/ButtonApp";
 
 interface propsCategoriaView {
@@ -36,7 +36,7 @@ export function CategoriaView(props: propsCategoriaView) {
             <Button
               title="visualizar"
               endIcon={listaDeIcones.flechaDireita}
-              onClick={() => navigate(`${rotas.categoria}/${categoria.id}`)}
+              onClick={() => navigate(rotaProdutosPorCategoria(categoria.descricao))}
             />
           </BoxApp>
           <GridApp container spacing={3}>

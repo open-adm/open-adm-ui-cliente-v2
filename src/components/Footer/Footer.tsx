@@ -6,7 +6,7 @@ import { IconButtonTooltipApp } from "../Icon/IconButtonTooltipApp";
 import { TextApp } from "../Text/TextApp";
 import { useNavigateApp } from "@/hooks/UseNavigateApp";
 import { useListarCategoriasApi } from "@/api/UseListarCategoriasApi";
-import { rotas } from "@/config/ConfigRotas";
+import { rotaProdutosPorCategoria } from "@/config/ConfigRotas";
 import { Button } from "../Button/ButtonApp";
 import { useContext } from "react";
 import { AppParceiroContext } from "@/context/AppParceiroContext";
@@ -36,7 +36,7 @@ export function Footer() {
           <BoxApp display="flex" flexDirection="column">
             {categorias.map((categoria) => (
               <Button
-                onClick={() => navigate(`${rotas.categoria}/${categoria.id}`)}
+                onClick={() => navigate(rotaProdutosPorCategoria(categoria.descricao))}
                 key={categoria.id}
                 title={categoria.descricao}
               />

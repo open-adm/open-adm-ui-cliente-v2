@@ -14,7 +14,6 @@ import { useThemeApp } from '@/hooks/UseThemeApp'
 import type { ICategoria } from '@/types/Categoria'
 import { ViewCarrinho } from '@/view/carrinho/ViewCarrinho'
 import { TodasCategorias } from '@/view/categoria/TodasCategorias'
-import { ViewCategoria } from '@/view/categoria/ViewCategoria'
 import { ViewEsqueceuSenha } from '@/view/esqueceuSenha/ViewEsqueceuSenha'
 import { BannerView } from '@/view/home/BannerView'
 import { CategoriaView } from '@/view/home/CategoriaView'
@@ -85,7 +84,6 @@ function StoreRoutes() {
       <Route path="/cadastro-realizado" element={<CadastroRealizadoPage />} />
       <Route path="/carrinho" element={<ViewCarrinho />} />
       <Route path="/categoria" element={<TodasCategorias />} />
-      <Route path="/categoria/:id" element={<ViewCategoria />} />
       <Route path="/esqueceu-senha" element={<ViewEsqueceuSenha />} />
       <Route path="/login" element={<ViewLogin />} />
       <Route path="/loja-parceira" element={<ViewLojaParceira />} />
@@ -94,6 +92,7 @@ function StoreRoutes() {
       <Route path="/pedido" element={<ViewPedido />} />
       <Route path="/pedido/:id" element={<ViewItensPedido />} />
       <Route path="/produto" element={<ViewProduto />} />
+      <Route path="/produto/:slug" element={<ViewProduto />} />
       <Route path="/recuperar-senha/:id" element={<RecuperarSenhaView />} />
       <Route path="/trocar-senha" element={<ViewTrocarSenha />} />
       <Route path="/usuario/criar" element={<FormUsuario />} />

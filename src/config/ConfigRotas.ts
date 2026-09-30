@@ -14,3 +14,7 @@ export const rotas = {
   criarUsuario: "/usuario/criar",
   pedidoFinalizado: "/pedido/finalizado",
 };
+
+export function rotaProdutosPorCategoria(categoria: string) {
+  return `${rotas.produto}/${encodeURIComponent(categoria)}`;
+}
