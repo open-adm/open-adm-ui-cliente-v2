@@ -1,21 +1,21 @@
 "use client";
 
 import { useFormikAdapter } from "@/adapters/FormikAdapter";
+import { useClienteApi } from "@/api/UseClienteApi";
+import { useCnpjApi } from "@/api/UseCnpjApi";
 import { BoxApp } from "@/components/Box/BoxApp";
 import { Button } from "@/components/Button/ButtonApp";
+import { GridApp } from "@/components/Grid/GridApp";
+import { InputApp, MaskType } from "@/components/Input/InputApp";
+import SelectApp from "@/components/Select/SelectApp";
+import { useSnackbar } from "@/components/SnackBar/UseSnackBar";
+import { TextApp } from "@/components/Text/TextApp";
 import { rotas } from "@/config/ConfigRotas";
 import { useNavigateApp } from "@/hooks/UseNavigateApp";
 import { IUsuarioCreate } from "@/types/Usuario";
+import { clearMaskCpfCnpj, clearMaskPhone } from "@/utils/MaskCpfCnpj";
 import { useState } from "react";
 import { initialValues, schema, tiposPessoa } from "./Configuracao";
-import { InputApp, MaskType } from "@/components/Input/InputApp";
-import { TextApp } from "@/components/Text/TextApp";
-import SelectApp from "@/components/Select/SelectApp";
-import { GridApp } from "@/components/Grid/GridApp";
-import { clearMaskCpfCnpj, clearMaskPhone } from "@/utils/MaskCpfCnpj";
-import { useClienteApi } from "@/api/UseClienteApi";
-import { useSnackbar } from "@/components/SnackBar/UseSnackBar";
-import { useCnpjApi } from "@/api/UseCnpjApi";
 
 export function FormUsuario() {
   const [tipoPessoa, setTipoPessoa] = useState(1);
@@ -68,7 +68,7 @@ export function FormUsuario() {
       return;
     }
 
-    if (response.descricao_situacao_cadastral !== "ATIVA") {
+    if (response.ativa !== true) {
       show("CNPJ inativo!", "error");
       return;
     }
@@ -87,6 +87,7 @@ export function FormUsuario() {
     form.setValue({
       validouCnpj: true,
       nome: response.nome_fantasia,
+      telefone: response.ddd_telefone_1 || response.ddd_telefone_2 || form.values.telefone,
     });
   }
 

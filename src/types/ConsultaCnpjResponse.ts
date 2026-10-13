@@ -4,7 +4,6 @@ export interface IConsultaCnpjResponse {
   descricao_identificador_matriz_filial: string;
   nome_fantasia: string;
   situacao_cadastral: 0;
-  descricao_situacao_cadastral: string;
   data_situacao_cadastral: string;
   motivo_situacao_cadastral: 0;
   descricao_motivo_situacao_cadastral: string;
@@ -44,6 +43,7 @@ export interface IConsultaCnpjResponse {
   porte: string;
   ente_federativo_responsavel: string;
   descricao_porte: string;
+  ativa: boolean;
   qsa: [
     {
       identificador_de_socio: 0;
