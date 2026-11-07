@@ -1,8 +1,8 @@
 export const pedidoRotasApi = {
   createPedido: 'pedidos/create',
   cancelarPedido: 'pedidos/cancelar',
-  pedidoMinimo: 'configuracoes-de-pedido/pedido-minimo',
-  todasConfiguracoesDePedido: 'configuracoes-de-pedido/todas-configuracoes',
+  pedidoMinimo: 'configuracao-do-sistema/pedido-minimo',
+  todasConfiguracoesDePedido: 'configuracao-do-sistema/todas-configuracoes',
   pedidoStatus: 'pedidos/list?statusPedido=',
   pedidoId: 'pedidos/get?pedidoId=',
   paraGerarCobranca: 'pedidos/get-gerar-pix?pedidoId=',
